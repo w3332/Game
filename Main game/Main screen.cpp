@@ -1,11 +1,15 @@
 #include "Function.h"
 #include "Game.h"
+#include"Player.h"
+#include"Monster.h"
+#include"Character.h"
 
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
+	
 	srand(time(NULL));
 	rand(); // холостой прогон, не удалять!
 
@@ -31,6 +35,7 @@ int main()
 	WriteText(welcome, 40);
 
 	Game game;
+	
 	
 	game.StartScreen();
 

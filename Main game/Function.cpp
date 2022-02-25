@@ -1,5 +1,6 @@
 #include "Function.h"
 
+
 void WriteText(const string& text, int printSpeed)
 {
 	Sleep(500);
@@ -11,4 +12,17 @@ void WriteText(const string& text, int printSpeed)
 		Sleep(printSpeed);
 	}
 	Sleep(500);
+}
+
+MonsterType SelectMonster() {
+
+	MonsterType type = MonsterType(rand() % MonsterType::MAX);
+	return type;
+}
+
+void Battle(Player play, Monster mon)
+{
+	play.GetDamage(mon);
+	mon.GetDamage(play);
+	
 }

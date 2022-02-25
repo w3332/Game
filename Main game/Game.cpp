@@ -1,4 +1,6 @@
 #include "Game.h"
+#include"Function.h"
+#include"Character.h"
 
 void Game::StartScreen()
 {
@@ -39,6 +41,7 @@ void Game::StartScreen()
 void Game::StartAdventure()
 {
 	int count = 0;
+	Player player;
 	while (true)
 	{
 		system("cls");
@@ -64,6 +67,14 @@ void Game::StartAdventure()
 			break;
 		}
 		count++;
+		Monster monst(SelectMonster());
+		Battle(player, monst);
+		if (player.CheckLife())
+		{
+			cout << "тебе пи..ц" << endl;
+			Sleep(2000);
+			break;
+		}
 	}
 }
 
