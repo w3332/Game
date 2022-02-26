@@ -1,19 +1,16 @@
 #pragma once
-#include <iostream>
-#include"Function.h"
+#include<iostream>
 
 class Character
 {
-public:
-	bool CheckLife();
-	void GetDamage(Character&unit);
-	
-
 protected:
-	int health,damage,defence;
+	int health, damage, defence;
 	std::string name;
 
-
+public:
+	bool CheckLife();
+	int DamageToCharacter(Character&unit);
+	void DealDamage(int totalDamage);
 
 };
 

@@ -1,6 +1,12 @@
 #include "Game.h"
-#include"Function.h"
-#include"Character.h"
+
+void Game::FirstMessage()
+{
+	string message1 = "A ты не из робкого десятка!\nЕсли коротко, то тебе нужно найти выход и не сдохнуть.\n";
+	WriteText(message1, 20);
+	string message2 = "Справишься ? Смотри, я на тебя поставил, не разочаруй меня!\n\n";
+	WriteText(message2, 10);
+}
 
 void Game::StartScreen()
 {
@@ -12,7 +18,9 @@ void Game::StartScreen()
 			" 2. Загрузит игру\n" <<
 			" 3. Помощь\n" <<
 			" 4. Выйти\n" <<
-			"\nВыберите пункт меню: ";
+			"\nВыбери пункт меню: ";
+
+		string messageHelp = "Тут ничего сложного! Сам разберёшься по ходу дела!\n";
 		short int choice;
 		cin >> choice;
 
@@ -21,16 +29,17 @@ void Game::StartScreen()
 			StartAdventure();
 			break;
 		case 2:
+			// << реализовать фаил загрузки
 			break;
 		case 3:
-			cout << "Да чё тут непонятного?! Сам разберёшься как играть!";
-			Sleep(3000);
+			WriteText(messageHelp, 30);
+			system("pause");
 			break;
 		case 4:
 			continueGame = false;
 			break;
 		default:
-			cout << "Неверный номер! Попробуйте снова\n"; Sleep(2000);
+			cout << "Неверный номер! Попробуй снова\n"; Sleep(2000);
 			cin.clear(); cin.ignore(32767, '\n');  // очищает буфер
 			choice = NULL;
 			break;
@@ -45,11 +54,8 @@ void Game::StartAdventure()
 	while (true)
 	{
 		system("cls");
-		if (count == 0)
-		{
-			string str = "A ты не из робкого десятка!\nЕсли коротко, то тебе нужно найти выход и не сдохнуть.\nСправишься? Смотри, я на тебя поставил, не разочаруй меня!\n\n";
-			WriteText(str, 50);
-		}
+		if (count == 0) FirstMessage();
+		
 		cout << "Ты стоишь посреди глуши. Твои дальнейшие действия?\n\n" <<
 				"1. Идём на Север\n" <<
 				"2. Идём на Восток\n" <<
@@ -67,12 +73,15 @@ void Game::StartAdventure()
 			break;
 		}
 		count++;
-		Monster monst(SelectMonster());
-		Battle(player, monst);
+
+		//Monster monst(SelectMonster());
+		//Battle(player, monst);
+
 		if (player.CheckLife())
 		{
-			cout << "тебе пи..ц" << endl;
-			Sleep(2000);
+			string finishMessage = "Тебе п...здец!\nИгра окончена.\n";
+			WriteText(finishMessage, 50);
+			system ("pause");
 			break;
 		}
 	}

@@ -1,8 +1,7 @@
 #include "Player.h"
 
-// а здесь уже вся реализация
-
 Player::Player() {
+	name = "Noname";
 	level = 1;
 	health = 100;
 	damage = 10;
@@ -18,7 +17,6 @@ void Player::LevelUp()
 		expMax = level * 100;
 		health = health + 50;
 		damage = damage + 5;
-		std::cout << "поздравляю, вы повысили уровень" << std::endl;
-
+		std::cout << "Поздравляю! Вы повысили уровень." << std::endl;
 	}
 }

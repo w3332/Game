@@ -6,14 +6,16 @@ class Game
 {
 private:
 	bool continueGame = true;
+
 public:
-	
+
+	void FirstMessage();
+
 	// главное меню
 	void StartScreen();
 
 	// основное игровое окно
 	void StartAdventure();
-
 
 };
 

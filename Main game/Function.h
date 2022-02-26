@@ -1,13 +1,14 @@
 #pragma once
 #include <iostream>
 #include <windows.h>
-#include"Monster.h"
-#include"Player.h"
-#include"Character.h"
+
+#include "Game.h"
+#include "Character.h"
+#include "Monster.h"
+#include "Player.h"
 using namespace std;
 
 void WriteText(const string& text, int printSpeed);
-
 
 MonsterType SelectMonster();
 

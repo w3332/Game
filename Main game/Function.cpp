@@ -1,6 +1,5 @@
 #include "Function.h"
 
-
 void WriteText(const string& text, int printSpeed)
 {
 	Sleep(500);
@@ -22,7 +21,5 @@ MonsterType SelectMonster() {
 
 void Battle(Player play, Monster mon)
 {
-	play.GetDamage(mon);
-	mon.GetDamage(play);
 	
 }

@@ -1,16 +1,27 @@
 #include "Character.h"
 
+// возвращает true если уровень здоровья меньше 0
 bool Character::CheckLife()
 {
 	if (health <= 0)
-	{
 		return true;
-
-	}
-	return false;
+	else
+		return false;
 }
 
-void Character::GetDamage(Character& unit)
+// рассчитывает урон, который нанесёт unit
+int Character::DamageToCharacter(Character& unit)
 {
-	health -= unit.damage - defence;
+	int totalDamage = unit.damage - this->defence;
+	if (totalDamage < 0)
+		totalDamage = 0;
+	return totalDamage;
 }
+
+// вычитает полученный урон из текущего здоровья
+void Character::DealDamage(int totalDamage)
+{
+	this->health -= totalDamage;
+}
+
+
