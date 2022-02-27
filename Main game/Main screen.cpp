@@ -30,6 +30,5 @@ int main()
 	Game game;
 	game.StartScreen();
 
-
 	return 0;
 }

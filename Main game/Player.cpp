@@ -3,7 +3,7 @@
 Player::Player() {
 	name = "Noname";
 	level = 1;
-	health = 100;
+	health = 0;
 	damage = 10;
 	defence = 1;
 }

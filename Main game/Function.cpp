@@ -2,7 +2,7 @@
 
 void WriteText(const string& text, int printSpeed)
 {
-	Sleep(500);
+	Sleep(printSpeed * 10);
 	for (char var : text)
 	{
 		if (var == ' ')
@@ -10,7 +10,28 @@ void WriteText(const string& text, int printSpeed)
 		cout << var;
 		Sleep(printSpeed);
 	}
-	Sleep(500);
+	Sleep(printSpeed * 10);
+}
+
+int CheckingInput(int minValue, int maxValue)
+{
+	int value;
+	while (true)
+	{
+		cin >> value;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(32767, '\n');
+		}
+		else
+		{
+			std::cin.ignore(32767, '\n');
+			if (value >= minValue && value <= maxValue)
+				return value;
+		}
+		std::cout << "Неверная цифра! Попробуй снова: ";
+	}
 }
 
 MonsterType SelectMonster() {

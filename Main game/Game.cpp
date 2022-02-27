@@ -21,9 +21,8 @@ void Game::StartScreen()
 			"\nВыбери пункт меню: ";
 
 		string messageHelp = "Тут ничего сложного! Сам разберёшься по ходу дела!\n";
-		short int choice;
-		cin >> choice;
 
+		short int choice = CheckingInput(1,4); 
 		switch (choice) {
 		case 1:
 			StartAdventure();
@@ -39,9 +38,6 @@ void Game::StartScreen()
 			continueGame = false;
 			break;
 		default:
-			cout << "Неверный номер! Попробуй снова\n"; Sleep(2000);
-			cin.clear(); cin.ignore(32767, '\n');  // очищает буфер
-			choice = NULL;
 			break;
 		}
 	}
@@ -63,19 +59,16 @@ void Game::StartAdventure()
 				"4. Идём на Запад\n" <<
 				"5. Никуда не идём. Куда нам торопится?\n";
 			
-		int choice;
-		cin >> choice;
+		int choice = CheckingInput(1,5);
+		
 		switch (choice)
 		{
-		case 1:
+		case 1: // << добавить реализацию кейсов
 			break;
 		default:
 			break;
 		}
 		count++;
-
-		//Monster monst(SelectMonster());
-		//Battle(player, monst);
 
 		if (player.CheckLife())
 		{
