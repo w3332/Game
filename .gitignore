@@ -6,3 +6,5 @@
 /.vs
 /Main game/.vs/Main/v17
 /Main game/x64/Debug
+/Main game/Debug/Main.tlog
+/Main game/Debug

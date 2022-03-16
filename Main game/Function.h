@@ -17,7 +17,9 @@ int CheckingInput(int minValue, int maxValue);
 // рандомно выбирает монстра
 MonsterType SelectMonster();
 
-void Battle(Player play, Monster mon); 
+void CollisionMonster(Monster &mon, Player &plr);
+
+void Battle(Monster &mon, Player &plr);
 
 
 

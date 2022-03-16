@@ -1,5 +1,6 @@
 #pragma once
 #include "Character.h"
+#include "Monster.h"
 
 class Player : public Character
 {
@@ -10,7 +11,11 @@ private:
 public:
 	Player();
 	void SetName(std::string name) { this->name = name; }
-	void LevelUp();
+	void LevelUp(MonsterType type);
+	int GetLevel() {
+		return level;
+	}
 };
+
 
 

@@ -24,4 +24,9 @@ void Character::DealDamage(int totalDamage)
 	this->health -= totalDamage;
 }
 
+std::string Character::GetName()
+{
+	return this->name;
+}
+
 

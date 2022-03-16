@@ -11,7 +11,10 @@ public:
 	bool CheckLife();
 	int DamageToCharacter(Character&unit);
 	void DealDamage(int totalDamage);
+	std::string GetName();
+	int GetHealth() { return this->health; }
 
 };
+
 
 

@@ -25,7 +25,7 @@ int main()
 	*/
 
 	string welcome = "Добро пожаловать в игру!\nЯ вижу тебе явно заняться нечем...\nНу что ж, давай сыграем!";
-	WriteText(welcome, 10);
+	//WriteText(welcome, 10);
 
 	Game game;
 	game.StartScreen();

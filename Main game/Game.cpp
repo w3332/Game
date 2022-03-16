@@ -50,7 +50,7 @@ void Game::StartAdventure()
 	while (true)
 	{
 		system("cls");
-		if (count == 0) FirstMessage();
+		//if (count == 0) FirstMessage();
 		
 		cout << "Ты стоишь посреди глуши. Твои дальнейшие действия?\n\n" <<
 				"1. Идём на Север\n" <<
@@ -60,11 +60,31 @@ void Game::StartAdventure()
 				"5. Никуда не идём. Куда нам торопится?\n";
 			
 		int choice = CheckingInput(1,5);
-		
+		Monster mon(SelectMonster());
 		switch (choice)
 		{
-		case 1: // << добавить реализацию кейсов
+		case 1:
+			
+			CollisionMonster(mon,player);
+			//DealDamage(DamageToCharacter())// << добавить реализацию кейсов
 			break;
+		case 2:
+
+			CollisionMonster(mon, player);
+			//DealDamage(DamageToCharacter())// << добавить реализацию кейсов
+			break;
+		case 3:
+
+			CollisionMonster(mon, player);
+			//DealDamage(DamageToCharacter())// << добавить реализацию кейсов
+			break;
+		case 4:
+
+			CollisionMonster(mon, player);
+			
+			//DealDamage(DamageToCharacter())// << добавить реализацию кейсов
+			break;
+			
 		default:
 			break;
 		}
@@ -77,6 +97,13 @@ void Game::StartAdventure()
 			system ("pause");
 			break;
 		}
+		if (player.GetLevel() >= 10) {
+			
+			WriteText(" вы красавчик, вы победили", 20);
+			break;
+		}
+		system("pause");
 	}
+
 }
 
