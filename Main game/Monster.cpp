@@ -7,7 +7,8 @@ Monster::Monster(MonsterType type)
 	case SKELETON:
 		name = "Skeleton";
 		health = 50;
-		damage = 5;
+		damageMin = 5;
+		damageMax = 10;
 		defence = 0;
 		thisMonster = type;
 
@@ -15,24 +16,34 @@ Monster::Monster(MonsterType type)
 	case ORC:
 		name = "Orc";
 		health = 100;
-		damage = 15;
+		damageMin = 15;
+		damageMax = 25;
 		defence = 10;
 		thisMonster = type;
 		break;
 	case LICH:
 		name = "Lich";
 		health = 150;
-		damage = 35;
+		damageMin = 25;
+		damageMax = 35;
 		defence = 15;
 		thisMonster = type;
 		break;
 	case DRAGON:
 		name = "Dragon";
 		health = 200;
-		damage = 55;
+		damageMin = 45;
+		damageMax = 55;
 		defence = 30;
 		thisMonster = type;
 		break;
+	case BOSS:
+		name = "Boss";
+		health = 400;
+		damageMin =90;
+		damageMax = 110;
+		defence = 45;
+		thisMonster = type;
 	default:
 		break;
 	}

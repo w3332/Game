@@ -4,7 +4,8 @@ Player::Player() {
 	name = "Noname";
 	level = 1;
 	health = 200;
-	damage = 35;
+	damageMin = 15;
+	damageMax = 35;
 	defence = 1;
 	exp = 0;
 	expMax = 50;
@@ -39,7 +40,8 @@ void Player::LevelUp(MonsterType type)
 		exp = exp - expMax;
 		expMax += level * 50;
 		health = health + 50;
-		damage = damage + 5;
+		damageMin +=  5;
+		damageMax += 7;
 		defence += 5;
 		std::cout << "Поздравляю! Вы повысили уровень." << std::endl;
 	}

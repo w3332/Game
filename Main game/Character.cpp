@@ -12,7 +12,8 @@ bool Character::CheckLife()
 // рассчитывает урон, который нанесёт unit
 int Character::DamageToCharacter(Character& unit)
 {
-	int totalDamage = unit.damage - this->defence;
+	int damage = rand() % (unit.damageMax - unit.damageMin) + unit.damageMin;
+	int totalDamage = damage - this->defence;
 	if (totalDamage < 0)
 		totalDamage = 0;
 	return totalDamage;

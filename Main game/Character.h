@@ -4,7 +4,7 @@
 class Character
 {
 protected:
-	int health, damage, defence;
+	int health, damageMin,damageMax, defence;
 	std::string name;
 
 public:

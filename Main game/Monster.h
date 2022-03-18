@@ -7,6 +7,7 @@ enum MonsterType
 	ORC,
 	LICH,
 	DRAGON,
+	BOSS,
 	MAX
 };
 

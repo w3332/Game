@@ -36,9 +36,13 @@ int CheckingInput(int minValue, int maxValue)
 
 MonsterType SelectMonster(int level) {
 	if (level <= 2) {
+		level = 3;
+	}
+	else if (level > 2 && level <= 4) {
 		level = 2;
 	}
-	else if (level > 2 && level < 6) {
+	else if (level >4  && level <=6) {
+
 		level = 1;
 	}
 	else {
@@ -60,6 +64,21 @@ void CollisionMonster(Monster &mon,Player &plr)
 	if (g == 1) {
 
 		Battle(mon,plr);
+	}
+	else if (g == 2) {
+		int q = rand() % 2;
+		if (q == 0) {
+			cout << " Вам удалось сбежать " << endl;
+	
+		}
+		else if (q == 1) {
+			int damageMon = plr.DamageToCharacter(mon)*1.5;
+			cout << " Вам не удалось сбежать. " << mon.GetName() << " нанёс вам " << damageMon << " урона " << endl;
+			plr.DealDamage(damageMon);
+			system("pause");
+			Battle(mon, plr);
+		}
+		
 	}
 	
 
