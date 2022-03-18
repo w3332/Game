@@ -8,6 +8,8 @@
 #include "Player.h"
 using namespace std;
 
+#define DEBUG 0 // 0 - для ускорение отладки, 1 - для релиз-версии
+
 //имитирует в консоли печать текста вручную
 void WriteText(const string& text, int printSpeed);
 

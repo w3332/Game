@@ -23,9 +23,10 @@ int main()
 	6 = Желтый  E = Светло-желтый
 	7 = Белый   F = Ярко-белый
 	*/
-
+	#if DEBUG
 	string welcome = "Добро пожаловать в игру!\nЯ вижу тебе явно заняться нечем...\nНу что ж, давай сыграем!";
-	//WriteText(welcome, 10);
+	WriteText(welcome, 10);
+	#endif
 
 	Game game;
 	game.StartScreen();

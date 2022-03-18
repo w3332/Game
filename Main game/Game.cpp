@@ -20,8 +20,6 @@ void Game::StartScreen()
 			" 4. Выйти\n" <<
 			"\nВыбери пункт меню: ";
 
-		string messageHelp = "Тут ничего сложного! Сам разберёшься по ходу дела!\n";
-
 		short int choice = CheckingInput(1,4); 
 		switch (choice) {
 		case 1:
@@ -31,7 +29,7 @@ void Game::StartScreen()
 			// << реализовать фаил загрузки
 			break;
 		case 3:
-			WriteText(messageHelp, 30);
+			WriteText("Тут ничего сложного! Сам разберёшься по ходу дела!\n", 30);
 			system("pause");
 			break;
 		case 4:
@@ -50,41 +48,34 @@ void Game::StartAdventure()
 	while (true)
 	{
 		system("cls");
-		//if (count == 0) FirstMessage();
-		
-		cout << "Ты стоишь посреди глуши. Твои дальнейшие действия?\n\n" <<
-				"1. Идём на Север\n" <<
-				"2. Идём на Восток\n" <<
-				"3. Идём на Юг\n" <<
-				"4. Идём на Запад\n" <<
-				"5. Никуда не идём. Куда нам торопится?\n";
+		#if DEBUG
+		if (count == 0) FirstMessage();
+		#endif
+
+		cout << "Ты стоишь посреди глуши.\n\n" <<
+				"1. Идём туда\n" <<
+				"2. Идём сюда\n" <<
+				"3. Идём куда то\n" <<
+				"4. Идём в запой\n" <<
+				"5. Стоим на месте\n\n"<< 
+				"Твои дальнейшие действия: ";
 			
 		int choice = CheckingInput(1,5);
 		Monster mon(SelectMonster());
 		switch (choice)
 		{
 		case 1:
-			
 			CollisionMonster(mon,player);
-			//DealDamage(DamageToCharacter())// << добавить реализацию кейсов
 			break;
 		case 2:
-
 			CollisionMonster(mon, player);
-			//DealDamage(DamageToCharacter())// << добавить реализацию кейсов
 			break;
 		case 3:
-
 			CollisionMonster(mon, player);
-			//DealDamage(DamageToCharacter())// << добавить реализацию кейсов
 			break;
 		case 4:
-
 			CollisionMonster(mon, player);
-			
-			//DealDamage(DamageToCharacter())// << добавить реализацию кейсов
 			break;
-			
 		default:
 			break;
 		}
@@ -97,9 +88,9 @@ void Game::StartAdventure()
 			system ("pause");
 			break;
 		}
-		if (player.GetLevel() >= 10) {
-			
-			WriteText(" вы красавчик, вы победили", 20);
+		if (player.GetLevel() >= 10) 
+		{	
+			WriteText("Красавчик! Ты победил!", 50);
 			break;
 		}
 		system("pause");
