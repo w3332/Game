@@ -43,9 +43,10 @@ MonsterType SelectMonster() {
 void CollisionMonster(Monster &mon,Player &plr)
 {
 
-	cout << "перед вами появился " << mon.GetName() << endl;
-	cout << "ваши дальнейшие действия:" << endl;
-	cout << "1.Сражаться" << endl << "2.Сбежать" << endl;
+	cout << "\nПеред вами появился " << mon.GetName() <<
+			"\nВаши дальнейшие действия:\n" <<
+			"1.Сражаться\n" <<
+			"2.Сбежать\n\n";
 	int g = CheckingInput(1, 2);
 	if (g == 1) {
 
@@ -58,23 +59,22 @@ void CollisionMonster(Monster &mon,Player &plr)
 void Battle(Monster &mon, Player &plr)
 {
 	while(true) {
+		system("cls"); // очищает экран консоли
 		int damageMon = plr.DamageToCharacter(mon);
 		int damagePlr = mon.DamageToCharacter(plr);
-		cout << "вы идёте в атаку и наносите " << damagePlr << " урона" << endl;
+		cout << "Вы идёте в атаку и наносите " << damagePlr << " урона" << endl;
 		mon.DealDamage(damagePlr);
 		WriteText("текущее здоровье монстра ", 20);
-		cout  << mon.GetHealth() << endl;
+		cout  << mon.GetHealth() << "\n\n";
 
 		if (mon.CheckLife()) {
 			plr.LevelUp(mon.GetType());//получаем опыт 
 			break;
-
 		}
 		else  {
 			cout << mon.GetName() << " нанёс вам " << damageMon << " урона" << endl;
 			plr.DealDamage(damageMon);
 			WriteText("ваше текущее здоровье = ", 20);
-			
 			cout  << plr.GetHealth() << endl;
 
 		}
