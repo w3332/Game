@@ -17,11 +17,11 @@ void WriteText(const string& text, int printSpeed);
 int CheckingInput(int minValue, int maxValue);
 
 // рандомно выбирает монстра
-MonsterType SelectMonster();
+MonsterType SelectMonster(int level);
 
 void CollisionMonster(Monster &mon, Player &plr);
 
 void Battle(Monster &mon, Player &plr);
 
-
+int CheckHealth(int hp);
 

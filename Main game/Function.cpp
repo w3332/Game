@@ -34,9 +34,18 @@ int CheckingInput(int minValue, int maxValue)
 	}
 }
 
-MonsterType SelectMonster() {
+MonsterType SelectMonster(int level) {
+	if (level <= 2) {
+		level = 2;
+	}
+	else if (level > 2 && level < 6) {
+		level = 1;
+	}
+	else {
+		level = 0;
+	}
+	MonsterType type = MonsterType(rand() % (MonsterType::MAX-level));
 
-	MonsterType type = MonsterType(rand() % MonsterType::MAX);
 	return type;
 }
 
@@ -65,7 +74,7 @@ void Battle(Monster &mon, Player &plr)
 		cout << "¬ы идЄте в атаку и наносите " << damagePlr << " урона" << endl;
 		mon.DealDamage(damagePlr);
 		WriteText("текущее здоровье монстра ", 20);
-		cout  << mon.GetHealth() << "\n\n";
+        cout  << CheckHealth(mon.GetHealth()) << "\n\n";
 
 		if (mon.CheckLife()) {
 			plr.LevelUp(mon.GetType());//получаем опыт 
@@ -75,7 +84,7 @@ void Battle(Monster &mon, Player &plr)
 			cout << mon.GetName() << " нанЄс вам " << damageMon << " урона" << endl;
 			plr.DealDamage(damageMon);
 			WriteText("ваше текущее здоровье = ", 20);
-			cout  << plr.GetHealth() << endl;
+			cout  << CheckHealth( plr.GetHealth()) << endl;
 
 		}
 
@@ -86,4 +95,13 @@ void Battle(Monster &mon, Player &plr)
 
 		system("pause");
 	}
+}
+
+int CheckHealth(int hp)
+{
+	if (hp < 0) {
+		hp = 0;
+		
+	}
+	return hp;
 }

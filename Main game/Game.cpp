@@ -61,7 +61,7 @@ void Game::StartAdventure()
 				"Твои дальнейшие действия: ";
 			
 		int choice = CheckingInput(1,5);
-		Monster mon(SelectMonster());
+		Monster mon(SelectMonster(player.GetLevel()));
 		switch (choice)
 		{
 		case 1:

@@ -22,14 +22,14 @@ Monster::Monster(MonsterType type)
 	case LICH:
 		name = "Lich";
 		health = 150;
-		damage = 20;
+		damage = 35;
 		defence = 15;
 		thisMonster = type;
 		break;
 	case DRAGON:
 		name = "Dragon";
 		health = 200;
-		damage = 30;
+		damage = 55;
 		defence = 30;
 		thisMonster = type;
 		break;
