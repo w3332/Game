@@ -35,6 +35,7 @@ void Game::StartScreen()
 		case 4:
 			continueGame = false;
 			break;
+		
 		default:
 			break;
 		}
@@ -57,7 +58,7 @@ void Game::StartAdventure()
 				"2. Идём сюда\n" <<
 				"3. Идём куда то\n" <<
 				"4. Идём в запой\n" <<
-				"5. Стоим на месте\n\n"<< 
+				"5. Надоело всё... Валим от сюда!\n\n"<< 
 				"Твои дальнейшие действия: ";
 			
 		int choice = CheckingInput(1,5);
@@ -76,21 +77,21 @@ void Game::StartAdventure()
 		case 4:
 			CollisionMonster(mon, player);
 			break;
+		case 5:
+			return;
 		default:
 			break;
 		}
 		count++;
 
-		if (player.CheckLife())
-		{
-			string finishMessage = "Тебе п...здец!\nИгра окончена.\n";
-			WriteText(finishMessage, 50);
+		if (player.CheckLife()) {
+			WriteText("Тебе п...здец!\nИгра окончена.\n", 100);
 			system ("pause");
 			break;
 		}
-		if (player.GetLevel() >= 10) 
-		{	
-			WriteText("Красавчик! Ты победил!", 50);
+		if (player.GetLevel() >= 10) {	
+			WriteText("Красавчик! Ты победил!\n", 100);
+			system("pause");
 			break;
 		}
 		system("pause");

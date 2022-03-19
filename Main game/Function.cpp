@@ -35,13 +35,13 @@ int CheckingInput(int minValue, int maxValue)
 }
 
 MonsterType SelectMonster(int level) {
-	if (level <= 2) {
+	if (level <= 3) {
 		level = 3;
 	}
-	else if (level > 2 && level <= 4) {
+	else if (level > 3 && level <= 6) {
 		level = 2;
 	}
-	else if (level >4  && level <=6) {
+	else if (level >6  && level <=9) {
 
 		level = 1;
 	}
@@ -90,9 +90,10 @@ void Battle(Monster &mon, Player &plr)
 		system("cls"); // очищает экран консоли
 		int damageMon = plr.DamageToCharacter(mon);
 		int damagePlr = mon.DamageToCharacter(plr);
-		cout << "Вы идёте в атаку и наносите " << damagePlr << " урона" << endl;
+		WriteText("Вы идёте в атаку и наносите ", 10);
+		cout<< damagePlr << " урона" << endl;
 		mon.DealDamage(damagePlr);
-		WriteText("текущее здоровье монстра ", 20);
+		WriteText("текущее здоровье монстра ", 10);
         cout  << CheckHealth(mon.GetHealth()) << "\n\n";
 
 		if (mon.CheckLife()) {
