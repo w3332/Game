@@ -8,8 +8,8 @@ Monster::Monster(MonsterType type)
 		name = "Skeleton";
 		health = 50;
 		damageMin = 5;
-		damageMax = 15;
-		defence = 2;
+		damageMax = 10;
+		defence = 0;
 		thisMonster = type;
 
 		break;
@@ -17,7 +17,7 @@ Monster::Monster(MonsterType type)
 		name = "Orc";
 		health = 100;
 		damageMin = 15;
-		damageMax = 30;
+		damageMax = 25;
 		defence = 10;
 		thisMonster = type;
 		break;
@@ -25,7 +25,7 @@ Monster::Monster(MonsterType type)
 		name = "Lich";
 		health = 150;
 		damageMin = 25;
-		damageMax = 40;
+		damageMax = 35;
 		defence = 15;
 		thisMonster = type;
 		break;
@@ -33,7 +33,7 @@ Monster::Monster(MonsterType type)
 		name = "Dragon";
 		health = 200;
 		damageMin = 45;
-		damageMax = 60;
+		damageMax = 55;
 		defence = 30;
 		thisMonster = type;
 		break;
@@ -42,7 +42,7 @@ Monster::Monster(MonsterType type)
 		health = 400;
 		damageMin =90;
 		damageMax = 110;
-		defence = 50;
+		defence = 45;
 		thisMonster = type;
 	default:
 		break;

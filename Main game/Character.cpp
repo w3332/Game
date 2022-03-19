@@ -13,10 +13,9 @@ bool Character::CheckLife()
 int Character::DamageToCharacter(Character& unit)
 {
 	int damage = rand() % (unit.damageMax - unit.damageMin) + unit.damageMin;
-	int defence = rand() % (this->defence - this->defence / 2) + this->defence / 2;
-	int totalDamage = damage - defence;
-	if (totalDamage < 1)
-		totalDamage = 1;
+	int totalDamage = damage - this->defence;
+	if (totalDamage < 0)
+		totalDamage = 0;
 	return totalDamage;
 }
 

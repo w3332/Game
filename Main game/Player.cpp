@@ -6,7 +6,7 @@ Player::Player() {
 	health = 200;
 	damageMin = 15;
 	damageMax = 35;
-	defence = 5;
+	defence = 1;
 	exp = 0;
 	expMax = 50;
 }
@@ -17,16 +17,16 @@ void Player::LevelUp(MonsterType type)
 	switch (type)
 	{
 	case SKELETON:
-		exp += 100;
+		exp += 50;
 		break;
 	case ORC:
-		exp += 200;
+		exp += 100;
 		break;
 	case LICH:
-		exp += 350;
+		exp += 160;
 		break;
 	case DRAGON:
-		exp += 600;
+		exp += 200;
 		break;
 	case MAX:
 		break;
@@ -39,7 +39,7 @@ void Player::LevelUp(MonsterType type)
 		level++;
 		exp = exp - expMax;
 		expMax += level * 50;
-		health = health + 70;
+		health = health + 50;
 		damageMin +=  5;
 		damageMax += 7;
 		defence += 5;
