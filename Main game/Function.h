@@ -25,3 +25,5 @@ void Battle(Monster &mon, Player &plr);
 
 int CheckHealth(int hp);
 
+
+

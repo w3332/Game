@@ -8,7 +8,7 @@ enum MonsterType
 	LICH,
 	DRAGON,
 	BOSS,
-	MAX
+	MAXMON
 };
 
 class Monster : public Character
@@ -21,4 +21,5 @@ public:
 	MonsterType GetType() {
 		return thisMonster;
 	}
+
 };

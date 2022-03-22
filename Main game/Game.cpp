@@ -58,7 +58,8 @@ void Game::StartAdventure()
 				"2. Идём сюда\n" <<
 				"3. Идём куда то\n" <<
 				"4. Идём в запой\n" <<
-				"5. Надоело всё... Валим от сюда!\n\n"<< 
+			    "5. Инвентарь\n"<<
+				"6. Надоело всё... Валим от сюда!\n\n"<< 
 				"Твои дальнейшие действия: ";
 			
 		int choice = CheckingInput(1,5);
@@ -78,6 +79,9 @@ void Game::StartAdventure()
 			CollisionMonster(mon, player);
 			break;
 		case 5:
+			//player.LookInventory();
+			return;
+		case 6:
 			return;
 		default:
 			break;

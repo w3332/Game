@@ -48,7 +48,7 @@ MonsterType SelectMonster(int level) {
 	else {
 		level = 0;
 	}
-	MonsterType type = MonsterType(rand() % (MonsterType::MAX-level));
+	MonsterType type = MonsterType(rand() % (MonsterType::MAXMON-level));
 
 	return type;
 }
@@ -90,14 +90,17 @@ void Battle(Monster &mon, Player &plr)
 		system("cls"); // очищает экран консоли
 		int damageMon = plr.DamageToCharacter(mon);
 		int damagePlr = mon.DamageToCharacter(plr);
-		WriteText("Вы идёте в атаку и наносите ", 10);
+
+		WriteText("Вы идёте в атаку и наносите ", 20);
 		cout<< damagePlr << " урона" << endl;
 		mon.DealDamage(damagePlr);
-		WriteText("текущее здоровье монстра ", 10);
+		WriteText("текущее здоровье монстра ", 20);
         cout  << CheckHealth(mon.GetHealth()) << "\n\n";
 
 		if (mon.CheckLife()) {
 			plr.LevelUp(mon.GetType());//получаем опыт 
+			//plr.AddToInventory();
+
 			break;
 		}
 		else  {

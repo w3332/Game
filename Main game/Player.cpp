@@ -9,6 +9,7 @@ Player::Player() {
 	defence = 5;
 	exp = 0;
 	expMax = 50;
+	
 }
 
 void Player::LevelUp(MonsterType type)
@@ -28,8 +29,7 @@ void Player::LevelUp(MonsterType type)
 	case DRAGON:
 		exp += 600;
 		break;
-	case MAX:
-		break;
+	
 	default:
 		break;
 	}
@@ -44,6 +44,8 @@ void Player::LevelUp(MonsterType type)
 		damageMax += 7;
 		defence += 5;
 		std::cout << "ѕоздравл€ю! ¬ы повысили уровень." << std::endl;
+		//Buff potion(BuffType::POTION);
+		//this->AddToInventory(potion);
 	}
 	std::cout << "ваш текущий уровень " << level << std::endl << "до следующего уровн€ осталось " << expMax - exp << " опыта"<<std::endl;
 		
