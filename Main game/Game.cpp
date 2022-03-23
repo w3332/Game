@@ -1,105 +1,171 @@
 #include "Game.h"
 
-void Game::FirstMessage()
-{
-	string message1 = "A ты не из робкого десятка!\nЕсли коротко, то тебе нужно найти выход и не сдохнуть.\n";
-	WriteText(message1, 20);
-	string message2 = "Справишься ? Смотри, я на тебя поставил, не разочаруй меня!\n\n";
-	WriteText(message2, 10);
-}
-
 void Game::StartScreen()
 {
+	
 	while (continueGame)
 	{
+		
 		system("cls"); // очищает экран консоли
 
 		cout << " 1. Начать игру\n" <<
-			" 2. Загрузит игру\n" <<
-			" 3. Помощь\n" <<
-			" 4. Выйти\n" <<
-			"\nВыбери пункт меню: ";
+				" 2. Загрузит игру\n" <<
+				" 3. Помощь\n" <<
+				" 4. Выйти\n" <<
+				"\nВыбери пункт меню: ";
 
-		short int choice = CheckingInput(1,4); 
-		switch (choice) {
+		choice = CheckingInput(1,4); 
+		switch (choice) 
+		{
 		case 1:
 			StartAdventure();
 			break;
 		case 2:
-			// << реализовать фаил загрузки
+			// реализовать фаил загрузки
 			break;
 		case 3:
 			WriteText("Тут ничего сложного! Сам разберёшься по ходу дела!\n", 30);
+			// создать раздел FAQ или базу знаний
 			system("pause");
 			break;
 		case 4:
-			continueGame = false;
+			continueGame = false; // завершаем игру
 			break;
-		
 		default:
 			break;
 		}
+		Player newplayer;
+		player = newplayer; // пересоздаём игрока
+	}
+}
+
+bool Game::EndGame()
+{
+	if (player.IsDead())
+	{
+		WriteText("Вы погибли! Приключение окончено.", 40);
+		Sleep(2000);
+		return true;
+	}
+	else if (player.GetLevel() >= 10)
+	{
+		WriteText("Поздравляем! Вы достигли 10 уровня,и теперь вы самый крутой перчик на районе!\n.", 40);
+		Sleep(4000);
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
 void Game::StartAdventure()
 {
-	int count = 0;
-	Player player;
-	while (true)
+	while (!(Game::EndGame())) // пока не выполнено одно из условий окончания игры
 	{
-		system("cls");
-		#if DEBUG
-		if (count == 0) FirstMessage();
-		#endif
-
-		cout << "Ты стоишь посреди глуши.\n\n" <<
-				"1. Идём туда\n" <<
-				"2. Идём сюда\n" <<
-				"3. Идём куда то\n" <<
-				"4. Идём в запой\n" <<
-			    "5. Инвентарь\n"<<
-				"6. Надоело всё... Валим от сюда!\n\n"<< 
+		system("cls"); // очищает экран консоли
+		
+		cout << "Ты стоишь посреди глуши. Нужно что то делать...\n\n" <<
+				"Движение:\n" <<
+				" 1. на Север\n" <<
+				" 2. на Восток\n" <<
+				" 3. на Юг\n" <<
+				" 4. на Запад\n" <<
+				"Информация:\n" <<
+			    " 5. Инвентарь\n"<<
+				"Прочее:\n"
+				" 6. Закончить игру\n\n" <<
 				"Твои дальнейшие действия: ";
-			
-		int choice = CheckingInput(1,5);
-		Monster mon(SelectMonster(player.GetLevel()));
+
+		choice = CheckingInput(1,6);
 		switch (choice)
 		{
 		case 1:
-			CollisionMonster(mon,player);
+			// Y++
+			CollisionMonster(); // <--- для тестирования
 			break;
 		case 2:
-			CollisionMonster(mon, player);
+			// X++
 			break;
 		case 3:
-			CollisionMonster(mon, player);
+			// Y--
 			break;
 		case 4:
-			CollisionMonster(mon, player);
+			// X--
 			break;
 		case 5:
-			//player.LookInventory();
-			return;
+			// смотрим в инвентарь
+			break;
 		case 6:
-			return;
+			return; // выход
 		default:
 			break;
 		}
-		count++;
+		
+	}
 
-		if (player.CheckLife()) {
-			WriteText("Тебе п...здец!\nИгра окончена.\n", 100);
-			system ("pause");
+}
+
+void Game::CollisionMonster()
+{
+	Monster mon(Monster::SelectMonster());
+	cout << "\nПеред вами появился " << mon.GetName() <<
+		"\nУ вас есть выбор:\n" <<
+		" 1. Сражаться\n" <<
+		" 2. Попробовать сбежать\n\n" <<
+		"Ваши дальнейшие действия: ";
+		choice = CheckingInput(1, 2);
+		if (choice == 1)
+		{ 
+			Battle(mon);
+		}
+		else if (choice == 2)
+		{
+			choice = rand() % 2;
+			if (choice == 0)
+			{
+				cout << " Вам удалось сбежать!\n";
+				system("pause");
+			}
+			else
+			{
+				int damageMon = player.DamageReceived(mon) * 1.5; // рассчитываем урон по игроку при неудачной попытке
+				cout << "Вам не удалось сбежать! " << mon.GetName() << " нанёс вам " << damageMon << " урона.\n";
+				player.ReducedHealth(damageMon);
+				cout << "Сражение уже не получится избежать. Придётся драться...\n";
+				system("pause"); // ставим на паузу перед началом боя
+				Battle(mon);
+			}
+		}
+	
+}
+
+void Game::Battle(Monster& mon)
+{
+	while (!(player.IsDead())) // пока игрок не умер или не повержен монстр
+	{
+		system("cls"); // очищает экран консоли
+		int damageMon = player.DamageReceived(mon);
+		int damagePlr = mon.DamageReceived(player);
+
+		WriteText("Вы идёте в атаку и наносите ", 0);
+		cout << damagePlr << " урона" << endl;
+		mon.ReducedHealth(damagePlr);
+		WriteText("текущее здоровье монстра ", 0);
+		cout << mon.GetHealth() << "\n\n";
+
+		if (mon.IsDead()) {
+			WriteText("Бой окончен.\n\n", 40);
+			player.Experience(mon.GetExperience());//получаем опыт 
 			break;
 		}
-		if (player.GetLevel() >= 10) {	
-			WriteText("Красавчик! Ты победил!\n", 100);
-			system("pause");
-			break;
+		else {
+			cout << mon.GetName() << " нанёс вам " << damageMon << " урона" << endl;
+			player.ReducedHealth(damageMon);
+			WriteText("Ваше текущее здоровье = ", 0);
+			cout << player.GetHealth() << endl;
 		}
 		system("pause");
 	}
-
 }
 

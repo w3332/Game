@@ -18,8 +18,12 @@ private:
 
 public:
 	Monster(MonsterType type);
-	MonsterType GetType() {
-		return thisMonster;
-	}
 
+	MonsterType GetType() {	return thisMonster;	}
+
+	// возвращает кол-во опыта в зависимости от типа монстра
+	int GetExperience();
+
+	// возвращает рандомный тип монстра
+	static MonsterType SelectMonster() { return MonsterType(rand() % MonsterType::MAXMON); }
 };

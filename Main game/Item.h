@@ -1,12 +1,13 @@
 #pragma once
-#include "Function.h"
+#include <iostream>
 
 enum Rare {
 	NORMAL,
 	MEDIUM,
 	RARE,
 	LEGENDARY,
-	MITHIC
+	MITHIC,
+	MAXRAREITEM
 };
 
 class Item
@@ -17,11 +18,9 @@ protected:
 	Rare rarity;
 
 public:
-	Item(){}
-	Item(Rare type) { rarity = type; }
-
-	string GetName() { return name; }
-	int GetPrice()	 { return price;}
+	std::string GetName() { return name; }
+	Rare GetRarity() { return rarity; }
+	virtual int GetPrice()	 { return price;}
 
 };
 

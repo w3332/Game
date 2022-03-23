@@ -1,6 +1,8 @@
 #include "Player.h"
 
-Player::Player() {
+Player::Player()
+{  
+	// статы по умолчанию
 	name = "Noname";
 	level = 1;
 	health = 200;
@@ -9,44 +11,23 @@ Player::Player() {
 	defence = 5;
 	exp = 0;
 	expMax = 50;
-	
 }
 
-void Player::LevelUp(MonsterType type)
+void Player::Experience(int expr)
 {
+	exp += expr;
 	
-	switch (type)
+	while (exp >= expMax) // пока текущий опыт выше необходимого максимума, повышаем уровень
 	{
-	case SKELETON:
-		exp += 100;
-		break;
-	case ORC:
-		exp += 200;
-		break;
-	case LICH:
-		exp += 350;
-		break;
-	case DRAGON:
-		exp += 600;
-		break;
-	
-	default:
-		break;
-	}
-
-	if (exp >= expMax)
-	{
+		// увеличение характеристик при лвл-апе
+		std::cout << "ѕоздравл€ем! ¬ы повысили уровень.\n";
 		level++;
-		exp = exp - expMax;
-		expMax += level * 50;
-		health = health + 70;
-		damageMin +=  5;
+		exp -= expMax;
+		expMax += level * 10;
+		health += 70;
+		damageMin += 5;
 		damageMax += 7;
 		defence += 5;
-		std::cout << "ѕоздравл€ю! ¬ы повысили уровень." << std::endl;
-		//Buff potion(BuffType::POTION);
-		//this->AddToInventory(potion);
 	}
-	std::cout << "ваш текущий уровень " << level << std::endl << "до следующего уровн€ осталось " << expMax - exp << " опыта"<<std::endl;
-		
+
 }

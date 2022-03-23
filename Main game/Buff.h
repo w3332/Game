@@ -5,8 +5,7 @@ enum BuffType
 {
 	POTION,
 	SCROLL,
-	MAXIM
-
+	MAXBUFF
 };
 
 class Buff : public Item   
@@ -14,12 +13,10 @@ class Buff : public Item
 private:
 	int value;
 public:
-	Buff()
-	{
-		
-	}
-	int GetValue() {
-		return value;
-	}
+	Buff(BuffType type);
+	int GetValue() { return value; }
+
+	// возвращает рандомный тип расходника
+	static BuffType SelectBuff() { return BuffType(rand() % BuffType::MAXBUFF); }
 
 };

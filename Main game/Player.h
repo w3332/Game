@@ -1,34 +1,20 @@
 #pragma once
-#include <vector>
 #include "Character.h"
-#include "Monster.h"
+#include "Buff.h"
 
 class Player : public Character
 {
 private:
-	int level,expMax,exp;
-	//std::vector <Item> inventory;
-
+	int level, exp ,expMax;
 public:
 	Player();
-	void SetName(std::string name) { this->name = name; }
-	void LevelUp(MonsterType type);
+	
+	// увеличивает опыт
+	void Experience(int expr);
 
-	int GetLevel() {return level;}
+	void SetName (std::string name) { this->name = name; }
+	int GetLevel() { return level;}
 
-	/*void AddToInventory(Item &item)	{inventory.push_back(item);}
-	void UsePotion(int value) {
-		health += value;
-	}
-	void LookInventory()
-	{
-		for (Item var : inventory)
-		{
-			cout << var.GetName()<<endl;
-
-
-		}
-	}*/
 };
 
 

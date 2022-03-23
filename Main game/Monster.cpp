@@ -48,3 +48,22 @@ Monster::Monster(MonsterType type)
 		break;
 	}
 }
+
+int Monster::GetExperience()
+{
+	switch (thisMonster)
+	{
+	case SKELETON:
+		return 100;
+	case ORC:
+		return 200;
+	case LICH:
+		return 350;
+	case DRAGON:
+		return 600;
+	case BOSS:
+		return 1000;
+	default:
+		break;
+	}
+}
