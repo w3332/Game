@@ -9,7 +9,7 @@ private:
 public:
 	Player();
 	
-	// увеличивает опыт
+	// увеличивает опыта
 	void Experience(int expr);
 
 	void SetName (std::string name) { this->name = name; }
