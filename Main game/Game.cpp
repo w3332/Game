@@ -94,7 +94,7 @@ void Game::StartAdventure()
 			// X--
 			break;
 		case 5:
-			// смотрим в инвентарь
+			player.LookInBackpack(); // смотрим в инвентарь
 			break;
 		case 6:
 			return; // выход
@@ -157,6 +157,8 @@ void Game::Battle(Monster& mon)
 		if (mon.IsDead()) {
 			WriteText("Бой окончен.\n\n", 40);
 			player.Experience(mon.GetExperience());//получаем опыт 
+			Buff randitem(Buff::SelectBuff()); // создаём рандомный расходник и передаём его игроку
+			player.PutInBackpack(randitem.GetName());
 			break;
 		}
 		else {

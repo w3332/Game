@@ -2,6 +2,7 @@
 #include "Function.h"
 #include "Player.h"
 #include "Monster.h"
+#include "Buff.h"
 
 // класс для отображения игрового экрана (главное меню, меню действий, диалоги)
 class Game
