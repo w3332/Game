@@ -43,7 +43,9 @@ void Player::PutInBackpack(std::string itemname)
 void Player::LookInBackpack()
 {
 	int count = 0;
+	#if DEBUG
 	WriteText("Ваш инвентарь:\n", 50);
+	#endif
 	for (auto &itemname : backpack)
 	{
 		count++;

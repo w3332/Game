@@ -43,14 +43,18 @@ bool Game::EndGame()
 {
 	if (player.IsDead())
 	{
-		WriteText("Вы погибли! Приключение окончено.", 40);
+		#if DEBUG
+		WriteText("Вы погибли! Приключение окончено.", 0);
 		Sleep(2000);
+		#endif // DEBUG
 		return true;
 	}
 	else if (player.GetLevel() >= 10)
 	{
-		WriteText("Поздравляем! Вы достигли 10 уровня,и теперь вы самый крутой перчик на районе!\n.", 40);
+		#if DEBUG
+		WriteText("Поздравляем! Вы достигли 10 уровня,и теперь вы самый крутой перчик на районе!\n.", 0);
 		Sleep(4000);
+		#endif // DEBUG
 		return true;
 	}
 	else
@@ -155,7 +159,9 @@ void Game::Battle(Monster& mon)
 		cout << mon.GetHealth() << "\n\n";
 
 		if (mon.IsDead()) {
+			#if DEBUG
 			WriteText("Бой окончен.\n\n", 40);
+			#endif // DEBUG
 			player.Experience(mon.GetExperience());//получаем опыт 
 			Buff randitem(Buff::SelectBuff()); // создаём рандомный расходник и передаём его игроку
 			player.PutInBackpack(randitem.GetName());
