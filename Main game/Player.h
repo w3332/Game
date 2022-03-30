@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <vector>
 
 #include "Character.h"
 #include "Function.h"
@@ -23,7 +24,8 @@ public:
 
 	void SetName (std::string name) { this->name = name; }
 	int GetLevel() { return level;}
-
+	void UseItem();
+	void WhatItemDoing(string itemName);
 };
 
 

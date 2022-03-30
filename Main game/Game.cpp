@@ -98,7 +98,7 @@ void Game::StartAdventure()
 			// X--
 			break;
 		case 5:
-			player.LookInBackpack(); // смотрим в инвентарь
+			player.UseItem(); // смотрим в инвентарь
 			break;
 		case 6:
 			return; // выход

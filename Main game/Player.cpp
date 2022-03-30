@@ -57,3 +57,47 @@ void Player::LookInBackpack()
 	}
 	system("pause");
 }
+
+void Player::UseItem()
+{
+	vector<string> myitem;
+	for (auto name : backpack) {
+		myitem.push_back(name.first);
+	}
+	cout << "Что из инвентаря вы хотите использовать?" << endl;
+	int count = 0;
+	for (auto item : myitem) {
+		count++;
+		cout << "#"<< count << " - " << item << endl;
+	}
+	cout << "Выберите номер предмета: ";
+	int a = CheckingInput(1,myitem.size());
+	cout << "Вы хотите использовать " << myitem[a-1] << "?" << endl << 
+		"1 - Да\n2 - Нет\n";
+	a = CheckingInput(1, 2);
+	if (a == 1) {
+		backpack[myitem[a-1]] -= 1;
+		WhatItemDoing(myitem[a-1]);
+	}
+	
+	
+	
+	
+}
+
+void Player::WhatItemDoing(string itemName)
+{
+	if (itemName == "Свиток") {
+		int a = rand() % 5;
+		defence += a;
+		cout << "Ваша защита увеличилась на " << a << ". Текущая защита равна " << defence << endl;
+		system("pause");
+	}
+	else if (itemName == "Лечебное зелье") {
+		int a = rand() % 31;
+		health += a;
+		cout << "Вы восстановили " << a << " здоровья. Текущее здоровье равно " << health << endl;
+		system("pause");
+	}
+	
+}

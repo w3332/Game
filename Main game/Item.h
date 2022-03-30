@@ -18,7 +18,7 @@ protected:
 	vector<string>  AllItems{
 		"ничего","Лечебное зелье","Свиток"
 	};
-
+	// если добавите предмет добавьте if в функцию Player::WhatItemDoing
 public:
 	string RandomItem();
 
