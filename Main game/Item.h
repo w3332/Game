@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
+#include<vector>
 
+using namespace std;
 enum Rare {
 	NORMAL,
 	MEDIUM,
@@ -11,16 +13,14 @@ enum Rare {
 };
 
 class Item
-{
+{ 
 protected: 
-	std::string name;
-	int price;
-	Rare rarity;
+	vector<string>  AllItems{
+		"ничего","Лечебное зелье","Свиток"
+	};
 
 public:
-	std::string GetName() { return name; }
-	Rare GetRarity() { return rarity; }
-	virtual int GetPrice()	 { return price;}
+	string RandomItem();
 
 };
 

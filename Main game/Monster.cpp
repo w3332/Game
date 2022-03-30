@@ -67,3 +67,13 @@ int Monster::GetExperience()
 		break;
 	}
 }
+
+MonsterType Monster::SelectMonster(int level)
+{
+	int x;
+	if (level <= 3) { x = 3; }
+	else if (level > 3 && level <= 6) {	x = 2;}
+	else {	x = 0;}
+	
+	return MonsterType(rand() % (MonsterType::MAXMON - x));
+}

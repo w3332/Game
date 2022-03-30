@@ -112,7 +112,7 @@ void Game::StartAdventure()
 
 void Game::CollisionMonster()
 {
-	Monster mon(Monster::SelectMonster());
+	Monster mon(Monster::SelectMonster(player.GetLevel()));
 	cout << "\nПеред вами появился " << mon.GetName() <<
 		"\nУ вас есть выбор:\n" <<
 		" 1. Сражаться\n" <<
@@ -163,8 +163,8 @@ void Game::Battle(Monster& mon)
 			WriteText("Бой окончен.\n\n", 40);
 			#endif // DEBUG
 			player.Experience(mon.GetExperience());//получаем опыт 
-			Buff randitem(Buff::SelectBuff()); // создаём рандомный расходник и передаём его игроку
-			player.PutInBackpack(randitem.GetName());
+			Item item;// создаём рандомный расходник и передаём его игроку
+			player.PutInBackpack(item.RandomItem());
 			break;
 		}
 		else {

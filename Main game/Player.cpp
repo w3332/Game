@@ -34,6 +34,10 @@ void Player::Experience(int expr)
 
 void Player::PutInBackpack(std::string itemname)
 {
+	if (itemname == "ничего") {
+		cout << "вы обшманали монстра но ничего не нашли" << endl;
+		return;
+	}
 	WriteText("Вы положили " + itemname + " в инвентарь\n", 40);
 	if (backpack[itemname] >= 0) {	backpack[itemname] += 1; } //если есть такой предмет увеличиваем кол-во
 	else {	backpack[itemname] = 1;	} //иначе создаём новый объект
