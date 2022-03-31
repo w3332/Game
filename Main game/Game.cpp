@@ -98,7 +98,14 @@ void Game::StartAdventure()
 			// X--
 			break;
 		case 5:
-			player.UseItem(); // смотрим в инвентарь
+			if (player.AnythingInBag()) {
+				player.LookInBag();
+				player.UseItem(); // смотрим в инвентарь
+			}
+			else {
+				cout << "В вашей инвентаре ничего нет!\n";
+				system("pause");
+			}
 			break;
 		case 6:
 			return; // выход
@@ -164,7 +171,7 @@ void Game::Battle(Monster& mon)
 			#endif // DEBUG
 			player.Experience(mon.GetExperience());//получаем опыт 
 			Item item;// создаём рандомный расходник и передаём его игроку
-			player.PutInBackpack(item.RandomItem());
+			player.PutInBag(item.RandomItem());
 			break;
 		}
 		else {

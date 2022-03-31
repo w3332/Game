@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player()
-{  
+{
 	// статы по умолчанию
 	name = "Noname";
 	level = 1;
@@ -16,7 +16,7 @@ Player::Player()
 void Player::Experience(int expr)
 {
 	exp += expr;
-	
+
 	while (exp >= expMax) // пока текущее кол-во опыт выше необходимого максимума, повышаем уровень
 	{
 		// увеличение характеристик при лвл-апе
@@ -32,25 +32,26 @@ void Player::Experience(int expr)
 
 }
 
-void Player::PutInBackpack(std::string itemname)
+void Player::PutInBag(std::string itemname)
 {
 	if (itemname == "ничего") {
-		cout << "вы обшманали монстра но ничего не нашли" << endl;
+		WriteText("Вы осмотрели монстра но ничего ценного не нашли\n", 30);
+		system("pause");
 		return;
 	}
-	WriteText("Вы положили " + itemname + " в инвентарь\n", 40);
-	if (backpack[itemname] >= 0) {	backpack[itemname] += 1; } //если есть такой предмет увеличиваем кол-во
-	else {	backpack[itemname] = 1;	} //иначе создаём новый объект
+	WriteText("Вы положили " + itemname + " в инвентарь\n", 20);
+	if (backpack[itemname] >= 0) backpack[itemname] += 1; //если есть такой предмет увеличиваем кол-во
+	else backpack[itemname] = 1;						  //иначе создаём новый объект
 	system("pause");
 }
 
-void Player::LookInBackpack()
+void Player::LookInBag()
 {
 	int count = 0;
 	#if DEBUG
-	WriteText("Ваш инвентарь:\n", 50);
+	WriteText("Ваш инвентарь:\n", 40);
 	#endif
-	for (auto &itemname : backpack)
+	for (auto& itemname : backpack)
 	{
 		count++;
 		std::cout << "#" << count << ": " << itemname.first << " - " << itemname.second << std::endl;
@@ -60,44 +61,53 @@ void Player::LookInBackpack()
 
 void Player::UseItem()
 {
-	vector<string> myitem;
-	for (auto name : backpack) {
-		myitem.push_back(name.first);
+	cout << "Что из инвентаря вы хотите использовать?\nВыберите номер предмета: ";
+	int i = 1, a = CheckingInput(1, backpack.size());
+	string myitem;
+	for (auto val : backpack)
+	{
+		if (i == a)
+			myitem = val.first;
+		i++;
 	}
-	cout << "Что из инвентаря вы хотите использовать?" << endl;
-	int count = 0;
-	for (auto item : myitem) {
-		count++;
-		cout << "#"<< count << " - " << item << endl;
-	}
-	cout << "Выберите номер предмета: ";
-	int a = CheckingInput(1,myitem.size());
-	cout << "Вы хотите использовать " << myitem[a-1] << "?" << endl << 
-		"1 - Да\n2 - Нет\n";
+	cout << "Вы хотите использовать " << myitem << "?\n1 - Да\n2 - Нет\n";
 	a = CheckingInput(1, 2);
 	if (a == 1) {
-		backpack[myitem[a-1]] -= 1;
-		WhatItemDoing(myitem[a-1]);
+		backpack[myitem] -= 1; // уменьшаем кол-во предмета в инвентаре
+		CheckItem();		   // если количество равно 0, то удаляем его
+		WhatItemDoes(myitem);
 	}
-	
-	
-	
-	
 }
 
-void Player::WhatItemDoing(string itemName)
+void Player::WhatItemDoes(string itemName)
 {
 	if (itemName == "Свиток") {
 		int a = rand() % 5;
 		defence += a;
 		cout << "Ваша защита увеличилась на " << a << ". Текущая защита равна " << defence << endl;
-		system("pause");
 	}
 	else if (itemName == "Лечебное зелье") {
-		int a = rand() % 31;
+		int a = rand() % 10 + 20;
 		health += a;
 		cout << "Вы восстановили " << a << " здоровья. Текущее здоровье равно " << health << endl;
-		system("pause");
 	}
-	
+		system("pause");
+
+}
+
+void Player::CheckItem()
+{
+	string name;
+	for (auto val : backpack) {
+		if (val.second <= 0) {
+			name = val.first;
+		}
+	}
+	backpack.erase(name);
+}
+
+bool Player::AnythingInBag()
+{
+	if (backpack.size() > 0) return true;
+	else return false;
 }
