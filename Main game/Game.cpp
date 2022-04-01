@@ -77,11 +77,12 @@ void Game::StartAdventure()
 				" 4. на Запад\n" <<
 				"Информация:\n" <<
 			    " 5. Инвентарь\n"<<
-				"Прочее:\n"
-				" 6. Закончить игру\n\n" <<
+				" 6. Ваши характеристики\n" <<
+				"Прочее:\n" <<
+				" 7. Закончить игру\n\n" <<
 				"Твои дальнейшие действия: ";
 
-		choice = CheckingInput(1,6);
+		choice = CheckingInput(1,7);
 		switch (choice)
 		{
 		case 1:
@@ -108,6 +109,9 @@ void Game::StartAdventure()
 			}
 			break;
 		case 6:
+			player.PrintCharacter();
+			break;
+		case 7:
 			return; // выход
 		default:
 			break;

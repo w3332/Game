@@ -10,7 +10,7 @@ Player::Player()
 	damageMax = 35;
 	defence = 5;
 	exp = 0;
-	expMax = 50;
+	expMax = 100;
 }
 
 void Player::Experience(int expr)
@@ -23,7 +23,7 @@ void Player::Experience(int expr)
 		std::cout << "Поздравляем! Вы повысили уровень.\n";
 		level++;
 		exp -= expMax;
-		expMax += level * 10;
+		expMax += level * 100;
 		health += 70;
 		damageMin += 5;
 		damageMax += 7;
@@ -93,6 +93,15 @@ void Player::WhatItemDoes(string itemName)
 	}
 		system("pause");
 
+}
+
+void Player::PrintCharacter()
+{
+	cout << "\nВаш уровень: " << level <<
+		"\nУрон: " << damageMin << " - " << damageMax <<
+		"\nЗащита: " << defence <<
+		"\nЗдоровье: " << health << endl;
+	system("pause");
 }
 
 void Player::CheckItem()

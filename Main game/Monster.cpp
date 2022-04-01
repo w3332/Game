@@ -6,7 +6,7 @@ Monster::Monster(MonsterType type)
 	{
 	case SKELETON:
 		name = "Skeleton";
-		health = 50;
+		health = 80;
 		damageMin = 5;
 		damageMax = 15;
 		defence = 2;
@@ -15,7 +15,7 @@ Monster::Monster(MonsterType type)
 		break;
 	case ORC:
 		name = "Orc";
-		health = 100;
+		health = 150;
 		damageMin = 15;
 		damageMax = 30;
 		defence = 10;
@@ -23,7 +23,7 @@ Monster::Monster(MonsterType type)
 		break;
 	case LICH:
 		name = "Lich";
-		health = 150;
+		health = 250;
 		damageMin = 25;
 		damageMax = 40;
 		defence = 15;
@@ -31,7 +31,7 @@ Monster::Monster(MonsterType type)
 		break;
 	case DRAGON:
 		name = "Dragon";
-		health = 200;
+		health = 500;
 		damageMin = 45;
 		damageMax = 60;
 		defence = 30;
@@ -39,7 +39,7 @@ Monster::Monster(MonsterType type)
 		break;
 	case BOSS:
 		name = "Boss";
-		health = 400;
+		health = 1000;
 		damageMin =90;
 		damageMax = 110;
 		defence = 50;
@@ -54,13 +54,13 @@ int Monster::GetExperience()
 	switch (thisMonster)
 	{
 	case SKELETON:
-		return 100;
+		return 50;
 	case ORC:
-		return 200;
+		return 100;
 	case LICH:
-		return 350;
+		return 200;
 	case DRAGON:
-		return 600;
+		return 350;
 	case BOSS:
 		return 1000;
 	default:

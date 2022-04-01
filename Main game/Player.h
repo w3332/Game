@@ -34,6 +34,9 @@ public:
 	// реализует предмет из инвентаря
 	void WhatItemDoes(string itemName);
 
+	// выводит на экран текущие статы игрока
+	void PrintCharacter();
+
 	void SetName (string name) { this->name = name; }
 	int GetLevel() { return level;}
 };
