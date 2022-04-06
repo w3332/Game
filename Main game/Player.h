@@ -39,6 +39,7 @@ public:
 
 	void SetName (string name) { this->name = name; }
 	int GetLevel() { return level;}
+	void SetType(int a) {	attackType = static_cast<AttackType>(a);}
 };
 
 

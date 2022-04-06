@@ -156,14 +156,27 @@ void Game::CollisionMonster()
 }
 
 void Game::Battle(Monster& mon)
+
 {
 	while (!(player.IsDead())) // пока игрок не умер или не повержен монстр
 	{
 		system("cls"); // очищает экран консоли
+		cout << "как будем атаковать? физ.атакой - '1' или магией - '2' " << endl;
+		int a = CheckingInput(1, 2);
+		if (a == 1) {
+			player.SetType(0);
+			WriteText("Вы идёте в атаку и наносите ", 0);
+
+		}
+		else {
+			player.SetType(1);
+			WriteText("Вы кастуете заклинание ", 0);
+			 
+		}
 		int damageMon = player.DamageReceived(mon);
 		int damagePlr = mon.DamageReceived(player);
-
-		WriteText("Вы идёте в атаку и наносите ", 0);
+		
+		
 		cout << damagePlr << " урона" << endl;
 		mon.ReducedHealth(damagePlr);
 		WriteText("текущее здоровье монстра ", 0);

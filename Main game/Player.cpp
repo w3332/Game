@@ -6,9 +6,10 @@ Player::Player()
 	name = "Noname";
 	level = 1;
 	health = 200;
-	damageMin = 15;
-	damageMax = 35;
-	defence = 5;
+	damageMg = 30;
+	damagePh = 20;
+	defencePh= 5;
+	defenceMg = 5;
 	exp = 0;
 	expMax = 100;
 }
@@ -25,9 +26,11 @@ void Player::Experience(int expr)
 		exp -= expMax;
 		expMax += level * 100;
 		health += 70;
-		damageMin += 5;
-		damageMax += 7;
-		defence += 5;
+		damageMg += 5;
+		damagePh += 7;
+		defenceMg += 5;
+		defencePh += 5;
+		
 	}
 
 }
@@ -83,8 +86,8 @@ void Player::WhatItemDoes(string itemName)
 {
 	if (itemName == "Свиток") {
 		int a = rand() % 5;
-		defence += a;
-		cout << "Ваша защита увеличилась на " << a << ". Текущая защита равна " << defence << endl;
+		defenceMg += a;
+		cout << "Ваша магическая защита увеличилась на " << a << ". Текущая защита равна " << defenceMg << endl;
 	}
 	else if (itemName == "Лечебное зелье") {
 		int a = rand() % 10 + 20;
@@ -98,9 +101,12 @@ void Player::WhatItemDoes(string itemName)
 void Player::PrintCharacter()
 {
 	cout << "\nВаш уровень: " << level <<
-		"\nУрон: " << damageMin << " - " << damageMax <<
-		"\nЗащита: " << defence <<
-		"\nЗдоровье: " << health << endl;
+		"\nУрон (физический/магический): " << damagePh<<" / " << damageMg <<
+		"\nЗащита(физическая/магическая): " << defencePh << " / " << defenceMg <<
+		"\nЗдоровье: " << health <<
+		"\nТекущий опыт: "<< exp<<
+		"\nДо следующего уровня осталось: "<< expMax-exp<< endl;
+
 	system("pause");
 }
 
